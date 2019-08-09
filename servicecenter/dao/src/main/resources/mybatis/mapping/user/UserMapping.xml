@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.yxl.myhome.user.UserDao">
+    <sql id="tableSection">mh_user</sql>
+
+    <!-- Create Po -->
+    <insert id="create" useGeneratedKeys="true" keyProperty="id">
+            id,
+            user_name,
+            pass_word
+        )
+        values (
+            #{id,jdbcType=BIGINT},
+            #{userName,jdbcType=VARCHAR},
+            #{password,jdbcType=VARCHAR}
+        )
+    </insert>
+
+
+    <!-- result map-->
+    <resultMap id="resultMap" type="com.yxl.myhome.po.UserPO">
+        <result column="id" jdbcType="BIGINT" property="id"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="pass_word" jdbcType="VARCHAR" property="password"/>
+    </resultMap>
+
+    <select id="getList" resultMap="resultMap">
+        select o.* from
+        <include refid="tableSection"/>
+        o
+    </select>
+
+</mapper>

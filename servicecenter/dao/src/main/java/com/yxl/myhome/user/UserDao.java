@@ -12,4 +12,8 @@ import java.util.List;
 @Mapper
 public interface UserDao {
     List<UserPO> getList();
+
+    int create(UserPO userPO);
+
+    void update(UserPO userPO);
 }

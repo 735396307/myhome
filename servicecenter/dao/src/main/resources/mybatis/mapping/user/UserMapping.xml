@@ -6,7 +6,7 @@
 
     <!-- Create Po -->
     <insert id="create" useGeneratedKeys="true" keyProperty="id">
-            id,
+            insert into <include refid="tableSection"/> (id,
             user_name,
             pass_word
         )
@@ -17,6 +17,11 @@
         )
     </insert>
 
+    <update id="update">
+        update <include refid="tableSection"/>
+        set user_name=#{userName} , pass_word = #{password}
+        where id = #{id}
+    </update>
 
     <!-- result map-->
     <resultMap id="resultMap" type="com.yxl.myhome.po.UserPO">

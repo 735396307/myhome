@@ -30,7 +30,7 @@ import java.util.Set;
 @WebFilter
 @Component
 public class AuthenticationFilter extends SessionManagementFilter {
-    private static final Set<String> NOT_FILTER_PATH = new HashSet<>(Arrays.asList("^/pub/.*", "^/api/.*"));
+    private static final Set<String> NOT_FILTER_PATH = new HashSet<>(Arrays.asList("^/pub/.*", "^/api/.*", "^/test/.*"));
 
     @Resource
     private AuthenticationFailureHandler authenticationFailureHandler;
@@ -47,9 +47,10 @@ public class AuthenticationFilter extends SessionManagementFilter {
             chain.doFilter(req, res);
             return;
         }
-        filterAndSetContext(request);
+//        filterAndSetContext(request);
         chain.doFilter(req, res);
     }
+
     @Override
     public void setAuthenticationFailureHandler(AuthenticationFailureHandler authenticationFailureHandler) {
         this.authenticationFailureHandler = authenticationFailureHandler;

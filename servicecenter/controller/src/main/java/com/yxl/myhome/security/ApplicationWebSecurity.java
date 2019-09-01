@@ -28,7 +28,7 @@ public class ApplicationWebSecurity extends WebSecurityConfigurerAdapter {
                 .accessDeniedHandler(webAccessDeniedHandler)
                 .authenticationEntryPoint(customAuthenticationEntryPoint);
         http.addFilterAfter(authenticationFilter, SecurityContextHolderAwareRequestFilter.class);
-        http.authorizeRequests().antMatchers("/pub/**", "/api/**").permitAll();
+        http.authorizeRequests().antMatchers("/pub/**", "/api/**", "/test/**").permitAll();
         http.authorizeRequests().anyRequest().authenticated();
     }
 
